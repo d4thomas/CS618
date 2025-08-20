@@ -4,7 +4,7 @@ import { MongoClient } from 'mongodb'
 
 // Create MongoDB client
 const url = 'mongodb://localhost:27017/'
-const dbName = 'cs618'
+const dbName = 'users'
 const client = new MongoClient(url)
 
 // Connect to MongoDB
