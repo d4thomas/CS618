@@ -8,7 +8,7 @@ export function initDatabase() {
 
   // Create listener
   mongoose.connection.on('open', () => {
-    console.info('Successfully connected to database:', DATABASE_URL)
+    console.info('successfully connected to database:', DATABASE_URL)
   })
 
   // Connect to database

@@ -13,7 +13,7 @@ try {
   await initDatabase()
   const PORT = process.env.PORT
   app.listen(PORT)
-  console.info(`Express server running on http://localhost:${PORT}`)
+  console.info(`express server running on http://localhost:${PORT}`)
 } catch (err) {
-  console.error('Error connecting to database:', err)
+  console.error('error connecting to database:', err)
 }

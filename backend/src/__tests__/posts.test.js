@@ -11,7 +11,7 @@ import {
   getPostById,
   updatePost,
   deletePost,
-} from '../services/post.js'
+} from '../services/posts.js'
 import { Post } from '../db/models/post.js'
 
 // Define tests for creating posts
