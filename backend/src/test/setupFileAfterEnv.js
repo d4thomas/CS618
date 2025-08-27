@@ -1,7 +1,4 @@
-// Import libraries
 import mongoose from 'mongoose'
-
-// Import functions
 import { beforeAll, afterAll } from '@jest/globals'
 import { initDatabase } from '../db/init.js'
 

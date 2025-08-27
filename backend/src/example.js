@@ -1,4 +1,3 @@
-// Import functions
 import { initDatabase } from './db/init.js'
 import { Post } from './db/models/post.js'
 

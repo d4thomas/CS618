@@ -1,8 +1,5 @@
-// Import libraries
 import mongoose from 'mongoose'
 import { describe, expect, test, beforeEach } from '@jest/globals'
-
-// Import functions
 import {
   createPost,
   listAllPosts,

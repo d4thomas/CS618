@@ -1,4 +1,3 @@
-// Import libraries
 import { MongoMemoryServer } from 'mongodb-memory-server'
 
 // Create memory server

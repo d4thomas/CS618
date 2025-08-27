@@ -1,4 +1,3 @@
-// Import libraries
 import mongoose, { Schema } from 'mongoose'
 
 // Define post schema

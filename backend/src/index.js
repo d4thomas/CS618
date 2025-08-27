@@ -1,8 +1,5 @@
-// Import Express app/functions
 import { app } from './app.js'
 import { initDatabase } from './db/init.js'
-
-// Import libraries
 import dotenv from 'dotenv'
 
 // Load dotenv configuration

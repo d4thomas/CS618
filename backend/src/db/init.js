@@ -1,4 +1,3 @@
-// Import libraries
 import mongoose from 'mongoose'
 
 export function initDatabase() {

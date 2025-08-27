@@ -1,4 +1,3 @@
-// Import functions
 import {
   listAllPosts,
   listPostsByAuthor,

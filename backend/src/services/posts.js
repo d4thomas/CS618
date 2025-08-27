@@ -1,4 +1,3 @@
-// Import functions
 import { Post } from '../db/models/post.js'
 
 // Create and return a new post
