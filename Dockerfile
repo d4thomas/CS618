@@ -1,6 +1,6 @@
 FROM node:20 AS build
-# Use Codespaces URL if running in Codespaces
-ARG VITE_BACKEND_URL=http://localhost:3001/api/v1
+# Use Codespaces URL or localhost:3001
+ARG VITE_BACKEND_URL=https://supreme-space-rotary-phone-jjjqg6p64j45fqgxg-3001.app.github.dev/api/v1
 WORKDIR /build
 COPY package.json .
 COPY package-lock.json .
