@@ -1,4 +1,5 @@
 FROM node:20 AS build
+# Use Codespaces URL if running in Codespaces
 ARG VITE_BACKEND_URL=http://localhost:3001/api/v1
 WORKDIR /build
 COPY package.json .
