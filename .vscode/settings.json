@@ -1,5 +1,5 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "cSpell.words": ["commitlintrc", "MONGOINSTANCE", "vite"]
+  "cSpell.words": ["commitlintrc", "expressjwt", "MONGOINSTANCE", "vite"]
 }

@@ -1,8 +1,8 @@
 import { Post } from '../db/models/post.js'
 
 // Create and return a new post
-export async function createPost({ title, author, contents, tags }) {
-  const post = new Post({ title, author, contents, tags })
+export async function createPost(userId, { title, contents, tags }) {
+  const post = new Post({ title, author: userId, contents, tags })
   return await post.save()
 }
 
@@ -35,15 +35,15 @@ export async function getPostById(postId) {
 }
 
 // Update post
-export async function updatePost(postId, { title, author, contents, tags }) {
+export async function updatePost(userId, postId, { title, contents, tags }) {
   return await Post.findOneAndUpdate(
-    { _id: postId },
-    { $set: { title, author, contents, tags } },
+    { _id: postId, author: userId },
+    { $set: { title, contents, tags } },
     { new: true },
   )
 }
 
 // Delete post
-export async function deletePost(postId) {
-  return await Post.deleteOne({ _id: postId })
+export async function deletePost(userId, postId) {
+  return await Post.deleteOne({ _id: postId, author: userId })
 }
