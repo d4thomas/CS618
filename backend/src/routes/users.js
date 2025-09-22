@@ -1,4 +1,4 @@
-import { createUser, loginUser } from '../services/users.js'
+import { createUser, loginUser, getUserInfoById } from '../services/users.js'
 
 export function userRoutes(app) {
   // User signup
@@ -23,5 +23,11 @@ export function userRoutes(app) {
         error: 'login failed, did you enter the correct username/password?',
       })
     }
+  })
+
+  // User name
+  app.get('/api/v1/users/:id', async (req, res) => {
+    const userInfo = await getUserInfoById(req.params.id)
+    return res.status(200).send(userInfo)
   })
 }
