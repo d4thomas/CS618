@@ -153,7 +153,7 @@ describe('getting a post', () => {
 
 // Define tests to update posts
 describe('updating posts', () => {
-  // Test updating author
+  // Test updating content
   test('should update the specified property', async () => {
     await updatePost(testUser._id, createdSamplePosts[0]._id, {
       contents: 'Test content',
