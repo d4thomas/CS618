@@ -1,5 +1,13 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "cSpell.words": ["commitlintrc", "expressjwt", "MONGOINSTANCE", "vite"]
+  "cSpell.words": [
+    "cloudrun",
+    "commitlintrc",
+    "DOCKERHUB",
+    "expressjwt",
+    "GOOGLECLOUD",
+    "MONGOINSTANCE",
+    "vite"
+  ]
 }
