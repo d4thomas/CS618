@@ -3,9 +3,45 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import express from 'express'
 import dotenv from 'dotenv'
+import { generateSitemap } from './generateSitemap.js'
 
 dotenv.config()
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+async function createProdServer() {
+  const app = express()
+  app.use((await import('compression')).default())
+  app.use(
+    (await import('serve-static')).default(
+      path.resolve(__dirname, 'dist/client'),
+      {
+        index: false,
+      },
+    ),
+  )
+  app.use('*', async (req, res, next) => {
+    if (req.originalUrl === '/sitemap.xml') {
+      const sitemap = await generateSitemap()
+      return res
+        .status(200)
+        .set({ 'Content-Type': 'application/xml' })
+        .end(sitemap)
+    }
+    try {
+      let template = fs.readFileSync(
+        path.resolve(__dirname, 'dist/client/index.html'),
+        'utf-8',
+      )
+      const render = (await import('./dist/server/entry-server.js')).render
+      const appHtml = await render(req)
+      const html = template.replace(`<!--ssr-outlet-->`, appHtml)
+      res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
+    } catch (e) {
+      next(e)
+    }
+  })
+  return app
+}
 
 async function createDevServer() {
   const app = express()
@@ -17,6 +53,14 @@ async function createDevServer() {
   })
   app.use(vite.middlewares)
   app.use('*', async (req, res, next) => {
+    if (req.originalUrl === '/sitemap.xml') {
+      const sitemap = await generateSitemap()
+      return res
+        .status(200)
+        .set({ 'Content-Type': 'application/xml' })
+        .end(sitemap)
+    }
+
     try {
       const templateHtml = fs.readFileSync(
         path.resolve(__dirname, 'index.html'),
@@ -32,34 +76,6 @@ async function createDevServer() {
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e) {
       vite.ssrFixStacktrace(e)
-      next(e)
-    }
-  })
-  return app
-}
-
-async function createProdServer() {
-  const app = express()
-  app.use((await import('compression')).default())
-  app.use(
-    (await import('serve-static')).default(
-      path.resolve(__dirname, 'dist/client'),
-      {
-        index: false,
-      },
-    ),
-  )
-  app.use('*', async (req, res, next) => {
-    try {
-      let template = fs.readFileSync(
-        path.resolve(__dirname, 'dist/client/index.html'),
-        'utf-8',
-      )
-      const render = (await import('./dist/server/entry-server.js')).render
-      const appHtml = await render(req)
-      const html = template.replace(`<!--ssr-outlet-->`, appHtml)
-      res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
-    } catch (e) {
       next(e)
     }
   })
