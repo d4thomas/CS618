@@ -8,6 +8,7 @@
     "expressjwt",
     "GOOGLECLOUD",
     "MONGOINSTANCE",
-    "vite"
+    "vite",
+    "Voronoi"
   ]
 }
