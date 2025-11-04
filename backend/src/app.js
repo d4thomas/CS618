@@ -2,8 +2,9 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
-
-import { postsRoutes } from './routes/posts.js'
+import { createServer } from 'node:http'
+import { Server } from 'socket.io'
+import { handleSocket } from './socket.js'
 import { userRoutes } from './routes/users.js'
 
 // Create Express app
@@ -12,8 +13,16 @@ app.use(cors())
 app.use(bodyParser.json())
 
 // Create routes
-postsRoutes(app)
 userRoutes(app)
+
+// Create Socket.io
+const server = createServer(app)
+const io = new Server(server, {
+  cors: {
+    origin: '*',
+  },
+})
+handleSocket(io)
 
 // Define routes
 app.get('/', (req, res) => {
@@ -21,4 +30,4 @@ app.get('/', (req, res) => {
 })
 
 // Export Express app
-export { app }
+export { server as app }
